@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS Membres
 , taille DOUBLE NOT NULL
 , masse DOUBLE NOT NULL
 , dateNaissance DATE NOT NULL
-, motPasse VARCHAR(15)
+, nomUtilisateur VARCHAR(15) NOT NULL
+, motPasse VARCHAR(15) NOT NULL
 , estAdmin BOOL NOT NULL DEFAULT FALSE
 , estBanni BOOL NOT NULL DEFAULT FALSE
 , PRIMARY KEY(idMembre)
@@ -102,7 +103,7 @@ CREATE TABLE IF NOT EXISTS Plats
 , idMembre INT NOT NULL
 , idTypePlat INT NOT NULL
 , nom VARCHAR(50) NOT NULL UNIQUE
-, imageUrl VARCHAR(50)
+, imageUrl VARCHAR(100)
 , note DOUBLE
 , PRIMARY KEY(idPlat)
 , FOREIGN KEY(idMembre)
@@ -173,7 +174,7 @@ CREATE TABLE IF NOT EXISTS AlimentsValeursNutritionnelles
 ( idAlimentValeurNutritionnelle INT AUTO_INCREMENT
 , idAliment INT NOT NULL
 , idValeurNutritionnelle INT NOT NULL
-, quantite INT NOT NULL
+, quantite DOUBLE NOT NULL
 , PRIMARY KEY(idAlimentValeurNutritionnelle)
 , FOREIGN KEY(idAliment)
 	REFERENCES Aliments(idAliment)

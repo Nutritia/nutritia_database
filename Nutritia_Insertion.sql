@@ -33,9 +33,9 @@ VALUES
 
 # Membres prédéfinis.
 INSERT INTO Membres
-( nom, prenom, taille, masse, dateNaissance, motPasse, estAdmin, estBanni )
+( nom, prenom, taille, masse, dateNaissance, nomUtilisateur, motPasse, estAdmin, estBanni )
 VALUES
-( 'Administrateur', 'Administrateur', 175, 75, DATE('1996-08-09'), 'admin', true, false );
+( 'Administrateur', 'Administrateur', 175, 75, DATE('1996-08-09'), 'admin', 'admin', true, false );
 
 # Types de plats prédéfinis.
 INSERT INTO TypesPlats
@@ -51,28 +51,29 @@ VALUES
 INSERT INTO Plats
 ( idMembre, idTypePlat, nom, imageUrl)
 VALUES
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Spaghetti sauce à la viande', 'images/plats/spaghetti.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Smoothie fraises et bananes', 'images/plats/smoothieFraisesBananes.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déjeuner'), 'Omelette western', 'images/plats/omeletteWestern.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Hamburger au boeuf et au cheddar', 'images/plats/hamburgerBoeufCheddar.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déssert'), 'Tarte au sucre', 'images/plats/tarteSucre.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Pâté chinois végétarien', 'images/plats/pateChinoisVegetarien.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Pizza pochettes toutes garnies', 'images/plats/pizzaPochettes.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Couscous végétarien', 'images/plats/couscousVegetarien.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Entrée'), 'Potage à la citrouille', 'images/plats/potageCitrouille.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Entrée'), 'Escargots à l’ail gratinés', 'images/plats/escargotsAilGratines.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déssert'), 'Gâteau aux carottes', 'images/plats/gateauCarottes.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Wrap au poulet', 'images/plats/wrapPoulet.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Salade grecque', 'images/plats/saladeGrecque.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Pâtes aux crevettes', 'images/plats/patesCrevettes.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Macaroni chinois', 'images/plats/macaroniChinois.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Jus d''orange', 'images/plats/jusOrange.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Jus de pomme', 'images/plats/jusPomme.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Thé glacé au citron', 'images/plats/theGlace.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Eau', 'images/plats/eau.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déssert'), 'Salade de fruits', 'images/plats/saladeFruits.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Filets de poissons au four', 'images/plats/filetsPoissons.jpg'),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Filet mignon sauce aux champignons', 'images/plats/filetMignonChampignons.jpg');
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Spaghetti sauce à la viande', 'pack://application:,,,/UI/Images/spaghetti.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Smoothie fraises et bananes', 'pack://application:,,,/UI/Images/smoothieFraisesBananes.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déjeuner'), 'Omelette western', 'pack://application:,,,/UI/Images/omelette.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déjeuner'), 'Omelette aux fruits', 'pack://application:,,,/UI/Images/nonDisponible.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Hamburger au boeuf et au cheddar', 'pack://application:,,,/UI/Images/hamburger.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déssert'), 'Tarte au sucre', 'pack://application:,,,/UI/Images/tarteSucre.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Pâté chinois végétarien', 'pack://application:,,,/UI/Images/pateChinoisVege.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Pizza pochettes toutes garnies', 'pack://application:,,,/UI/Images/pizzaPochettes.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Couscous végétarien', 'pack://application:,,,/UI/Images/couscousVege.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Entrée'), 'Potage à la citrouille', 'pack://application:,,,/UI/Images/nonDisponible.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Entrée'), 'Escargots à l’ail gratinés', 'pack://application:,,,/UI/Images/escargotsAil.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déssert'), 'Gâteau aux carottes', 'pack://application:,,,/UI/Images/gateauCarottes.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Wrap au poulet', 'pack://application:,,,/UI/Images/wrapPoulet.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Salade grecque', 'pack://application:,,,/UI/Images/saladeGrecque.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Pâtes aux crevettes', 'pack://application:,,,/UI/Images/patesCrevettes.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Macaroni chinois', 'pack://application:,,,/UI/Images/macaroniChinois.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Jus d''orange', 'pack://application:,,,/UI/Images/jusOrange.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Jus de pomme', 'pack://application:,,,/UI/Images/jusPomme.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Thé glacé au citron', 'pack://application:,,,/UI/Images/theGlace.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Eau', 'pack://application:,,,/UI/Images/eau.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déssert'), 'Salade de fruits', 'pack://application:,,,/UI/Images/saladeFruits.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Filets de poissons au four', 'pack://application:,,,/UI/Images/filetsPoissons.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Filet mignon sauce aux champignons', 'pack://application:,,,/UI/Images/filetMignonChampignons.png');
 
 # Unités de mesure prédéfinies.
 INSERT INTO UnitesMesure
@@ -694,6 +695,10 @@ VALUES
 ( ( SELECT idPlat FROM Plats WHERE nom='Omelette western' ), ( SELECT idAliment FROM Aliments WHERE nom='Poivron vert' ), 0.5 ),
 ( ( SELECT idPlat FROM Plats WHERE nom='Omelette western' ), ( SELECT idAliment FROM Aliments WHERE nom='Oignon' ), 0.3 ),
 ( ( SELECT idPlat FROM Plats WHERE nom='Omelette western' ), ( SELECT idAliment FROM Aliments WHERE nom='Jambon extra maigre' ), 0.5 ),
+( ( SELECT idPlat FROM Plats WHERE nom='Omelette aux fruits' ), ( SELECT idAliment FROM Aliments WHERE nom='Oeuf' ), 2 ),
+( ( SELECT idPlat FROM Plats WHERE nom='Omelette aux fruits' ), ( SELECT idAliment FROM Aliments WHERE nom='Eau' ), 0.3 ),
+( ( SELECT idPlat FROM Plats WHERE nom='Omelette aux fruits' ), ( SELECT idAliment FROM Aliments WHERE nom='Fraise' ), 0.5 ),
+( ( SELECT idPlat FROM Plats WHERE nom='Omelette aux fruits' ), ( SELECT idAliment FROM Aliments WHERE nom='Banane' ), 0.5 ),
 ( ( SELECT idPlat FROM Plats WHERE nom='Hamburger au boeuf et au cheddar' ), ( SELECT idAliment FROM Aliments WHERE nom='Oignon' ), 0.3 ),
 ( ( SELECT idPlat FROM Plats WHERE nom='Hamburger au boeuf et au cheddar' ), ( SELECT idAliment FROM Aliments WHERE nom='Moutarde de dijon' ), 0.5 ),
 ( ( SELECT idPlat FROM Plats WHERE nom='Hamburger au boeuf et au cheddar' ), ( SELECT idAliment FROM Aliments WHERE nom='Boeuf haché ordinaire' ), 1.5 ),
