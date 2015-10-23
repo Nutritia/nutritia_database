@@ -27,6 +27,7 @@ INSERT INTO Preferences
 ( preference )
 VALUES
 ( 'Végétarien' ),
+( 'Végétalien' ),
 ( 'Viandes' ),
 ( 'Pâtes' ),
 ( 'Poissons et fruits de mers' );
@@ -35,7 +36,7 @@ VALUES
 INSERT INTO Membres
 ( nom, prenom, taille, masse, dateNaissance, nomUtilisateur, motPasse, estAdmin, estBanni )
 VALUES
-( 'Administrateur', 'Administrateur', 175, 75, DATE('1996-08-09'), 'admin', 'admin', true, false );
+( 'Administrateur', 'Administrateur', 180, 80, DATE('1996-08-09'), 'admin', 'admin', true, false );
 
 # Types de plats prédéfinis.
 INSERT INTO TypesPlats
