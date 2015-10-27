@@ -1,3 +1,7 @@
+# Création de la base de données Nutritia
+CREATE DATABASE IF NOT EXISTS `420-5A5-A15_Nutritia`;
+
+USE `420-5A5-A15_Nutritia`;
 # Création de la structure des tables de la base de données Nutritia.
 
 DROP TABLE IF EXISTS AlimentsValeursNutritionnelles;

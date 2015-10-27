@@ -1,3 +1,5 @@
+USE `420-5A5-A15_Nutritia`;
+
 # Insertion des données de bases de l'application Nutritia.
 
 # Restrictions alimentaires prédéfinies.
