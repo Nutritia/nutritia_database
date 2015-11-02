@@ -187,3 +187,48 @@ CREATE TABLE IF NOT EXISTS AlimentsValeursNutritionnelles
 , FOREIGN KEY(idValeurNutritionnelle)
 	REFERENCES ValeursNutritionnelles(idValeurNutritionnelle)
 );
+
+
+CREATE OR REPLACE VIEW RetrieveAdmins AS
+SELECT nom, prenom, taille, masse, dateNaissance, nomUtilisateur, estAdmin, estBanni
+FROM Membres
+WHERE estAdmin IS TRUE;
+
+
+CREATE OR REPLACE VIEW RetrieveMembres AS
+SELECT nom, prenom, taille, masse, dateNaissance, nomUtilisateur, estAdmin, estBanni
+FROM Membres;
+
+
+CREATE OR REPLACE VIEW RetrieveBannis AS
+SELECT nom, prenom, taille, masse, dateNaissance, nomUtilisateur, estAdmin, estBanni
+FROM Membres
+WHERE estBanni IS TRUE;
+
+
+CREATE OR REPLACE VIEW RetrieveAliments AS
+SELECT a.idAliment, a.nom, a.mesure,  ga.groupeAlimentaire, um.uniteMesure, um.symbole
+FROM Aliments a 
+INNER JOIN 
+	groupesAlimentaires ga ON ga.idGroupeAlimentaire = a.idGroupeAlimentaire 
+INNER JOIN 
+	UnitesMesure um ON um.idUniteMesure = a.idUniteMesure;
+    
+
+CREATE OR REPLACE VIEW RetrieveValeursNutritionnelles AS
+SELECT a.nom, avn.quantite, vn.valeurNutritionnelle, um.UniteMesure, um.Symbole
+FROM Aliments a
+INNER JOIN
+	AlimentsValeursNutritionnelles avn ON avn.idAliment = a.idAliment
+INNER JOIN
+	ValeursNutritionnelles vn ON vn.idValeurNutritionnelle = avn.idValeurNutritionnelle
+INNER JOIN
+	UnitesMesure um ON um.idUniteMesure = vn.idUniteMesure;
+
+
+SELECT *
+FROM RetrieveAliments;
+
+SELECT *
+FROM RetrieveValeursNutritionnelles;
+
