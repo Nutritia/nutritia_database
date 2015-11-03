@@ -42,7 +42,7 @@ VALUES
 
 # Version 0.5.9.0 commence les notifications
 INSERT INTO VersionsLogiciel
-(version, description)
+(version, downloadLink)
 VALUES
 ('0.5.9.0', 'https://github.com/Nutritia/nutritia/releases/tag/v0.5.9.0');
 

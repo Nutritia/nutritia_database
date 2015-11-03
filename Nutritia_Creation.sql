@@ -27,12 +27,18 @@ DROP TABLE IF EXISTS VersionsLogiciel;
 CREATE TABLE IF NOT EXISTS VersionsLogiciel
 ( idVersionLogiciel INT PRIMARY KEY AUTO_INCREMENT
 , version VARCHAR(7) NOT NULL
-, description VARCHAR(100)
+, changelog VARCHAR(500)
+, downloadLink VARCHAR(100) NOT NULL DEFAULT 'https://github.com/Nutritia/nutritia/releases'
+, datePublication DATETIME NOT NULL DEFAULT NOW()
 );
 
 ALTER TABLE VersionsLogiciel
 ADD CONSTRAINT VersionsLogiciel_version_UK
 UNIQUE (version);
+
+ALTER TABLE VersionsLogiciel
+ADD CONSTRAINT VersionsLogiciel_datePublication_UK
+UNIQUE (datePublication);
 
 CREATE TABLE IF NOT EXISTS RestrictionsAlimentaires 
 ( idRestrictionAlimentaire INT AUTO_INCREMENT
@@ -200,3 +206,9 @@ CREATE TABLE IF NOT EXISTS AlimentsValeursNutritionnelles
 , FOREIGN KEY(idValeurNutritionnelle)
 	REFERENCES ValeursNutritionnelles(idValeurNutritionnelle)
 );
+
+CREATE OR REPLACE VIEW CurrentVersion AS
+SELECT version, datePublication, downloadLink, changeLog
+From VersionsLogiciel
+ORDER BY version DESC
+LIMIT 1;
