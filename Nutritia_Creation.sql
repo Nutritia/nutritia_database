@@ -1,14 +1,14 @@
-# Création de la base de données Nutritia
+# Création de la base de données Nutritia.
 CREATE DATABASE IF NOT EXISTS `420-5A5-A15_Nutritia`;
 
 USE `420-5A5-A15_Nutritia`;
-# Création de la structure des tables de la base de données Nutritia.
 
+# Création de la structure des tables de la base de données Nutritia.
 DROP TABLE IF EXISTS AlimentsValeursNutritionnelles;
 DROP TABLE IF EXISTS ValeursNutritionnelles;
 DROP TABLE IF EXISTS PlatsAliments;
 DROP TABLE IF EXISTS Aliments;
-DROP TABLE IF EXISTS GroupesAlimentaires;
+DROP TABLE IF EXISTS CategoriesAlimentaires;
 DROP TABLE IF EXISTS UnitesMesure;
 DROP TABLE IF EXISTS MenusPlats;
 DROP TABLE IF EXISTS Plats;
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS Membres
 , taille DOUBLE NOT NULL
 , masse DOUBLE NOT NULL
 , dateNaissance DATE NOT NULL
-, nomUtilisateur VARCHAR(15) NOT NULL
+, nomUtilisateur VARCHAR(15) NOT NULL UNIQUE
 , motPasse VARCHAR(15) NOT NULL
 , estAdmin BOOL NOT NULL DEFAULT FALSE
 , estBanni BOOL NOT NULL DEFAULT FALSE
@@ -90,7 +90,8 @@ CREATE TABLE IF NOT EXISTS PreferencesMembres
 CREATE TABLE IF NOT EXISTS Menus 
 ( idMenu INT AUTO_INCREMENT
 , idMembre INT NOT NULL
-, nom VARCHAR(30) NOT NULL
+, nom VARCHAR(15) NOT NULL UNIQUE
+, nbPersonnes INT NOT NULL
 , dateMenu DATETIME NOT NULL
 , PRIMARY KEY(idMenu)
 , FOREIGN KEY(idMembre)
@@ -136,23 +137,23 @@ CREATE TABLE IF NOT EXISTS UnitesMesure
 , PRIMARY KEY(idUniteMesure)
 );
 
-CREATE TABLE IF NOT EXISTS GroupesAlimentaires
-( idGroupeAlimentaire INT AUTO_INCREMENT
-, groupeAlimentaire VARCHAR(30) NOT NULL UNIQUE
-, PRIMARY KEY(idGroupeAlimentaire)
+CREATE TABLE IF NOT EXISTS CategoriesAlimentaires
+( idCategorieAlimentaire INT AUTO_INCREMENT
+, categorieAlimentaire VARCHAR(30) NOT NULL UNIQUE
+, PRIMARY KEY(idCategorieAlimentaire)
 );
 
 CREATE TABLE IF NOT EXISTS Aliments
 ( idAliment INT AUTO_INCREMENT
 , idUniteMesure INT NOT NULL
-, idGroupeAlimentaire INT NOT NULL
+, idCategorieAlimentaire INT NOT NULL
 , nom VARCHAR(30) NOT NULL UNIQUE
 , mesure INT NOT NULL
 , PRIMARY KEY(idAliment)
 , FOREIGN KEY(idUniteMesure)
 	REFERENCES UnitesMesure(idUniteMesure)
-, FOREIGN KEY(idGroupeAlimentaire)
-	REFERENCES GroupesAlimentaires(idGroupeAlimentaire)
+, FOREIGN KEY(idCategorieAlimentaire)
+	REFERENCES CategoriesAlimentaires(idCategorieAlimentaire)
 );
 
 CREATE TABLE IF NOT EXISTS PlatsAliments
