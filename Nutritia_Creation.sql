@@ -21,6 +21,18 @@ DROP TABLE IF EXISTS Membres;
 DROP TABLE IF EXISTS Preferences;
 DROP TABLE IF EXISTS Objectifs;
 DROP TABLE IF EXISTS RestrictionsAlimentaires;
+DROP TABLE IF EXISTS VersionsLogiciel;
+
+
+CREATE TABLE IF NOT EXISTS VersionsLogiciel
+( idVersionLogiciel INT PRIMARY KEY AUTO_INCREMENT
+, version VARCHAR(7) NOT NULL
+, description VARCHAR(100)
+);
+
+ALTER TABLE VersionsLogiciel
+ADD CONSTRAINT VersionsLogiciel_version_UK
+UNIQUE (version);
 
 CREATE TABLE IF NOT EXISTS RestrictionsAlimentaires 
 ( idRestrictionAlimentaire INT AUTO_INCREMENT

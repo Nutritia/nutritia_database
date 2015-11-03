@@ -40,6 +40,12 @@ INSERT INTO Membres
 VALUES
 ( 'Administrateur', 'Administrateur', 180, 80, DATE('1996-08-09'), 'admin', 'admin', true, false );
 
+# Version 0.5.9.0 commence les notifications
+INSERT INTO VersionsLogiciel
+(version, description)
+VALUES
+('0.5.9.0', 'https://github.com/Nutritia/nutritia/releases/tag/v0.5.9.0');
+
 # Types de plats prédéfinis.
 INSERT INTO TypesPlats
 ( typePlat )
