@@ -1,5 +1,6 @@
 # Création de la base de données Nutritia.
-CREATE DATABASE IF NOT EXISTS `420-5A5-A15_Nutritia`;
+CREATE DATABASE IF NOT EXISTS `420-5A5-A15_Nutritia`
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 USE `420-5A5-A15_Nutritia`;
 
@@ -30,7 +31,8 @@ CREATE TABLE IF NOT EXISTS VersionsLogiciel
 , changelog VARCHAR(500)
 , downloadLink VARCHAR(100) NOT NULL DEFAULT 'https://github.com/Nutritia/nutritia/releases'
 , datePublication DATETIME NOT NULL DEFAULT NOW()
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 ALTER TABLE VersionsLogiciel
 ADD CONSTRAINT VersionsLogiciel_version_UK
@@ -44,19 +46,22 @@ CREATE TABLE IF NOT EXISTS RestrictionsAlimentaires
 ( idRestrictionAlimentaire INT AUTO_INCREMENT
 , restrictionAlimentaire VARCHAR(30) NOT NULL UNIQUE
 , PRIMARY KEY(idRestrictionAlimentaire)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS Objectifs 
 ( idObjectif INT AUTO_INCREMENT
 , objectif VARCHAR(30) NOT NULL UNIQUE
 , PRIMARY KEY(idObjectif)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS Preferences 
 ( idPreference INT AUTO_INCREMENT
 , preference VARCHAR(30) NOT NULL UNIQUE
 , PRIMARY KEY(idPreference)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS Membres 
 ( idMembre INT AUTO_INCREMENT
@@ -70,7 +75,8 @@ CREATE TABLE IF NOT EXISTS Membres
 , estAdmin BOOL NOT NULL DEFAULT FALSE
 , estBanni BOOL NOT NULL DEFAULT FALSE
 , PRIMARY KEY(idMembre)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS RestrictionsAlimentairesMembres 
 ( idRestrictionAlimentaireMembre INT AUTO_INCREMENT
@@ -81,7 +87,8 @@ CREATE TABLE IF NOT EXISTS RestrictionsAlimentairesMembres
 	REFERENCES RestrictionsAlimentaires(idRestrictionAlimentaire)
 , FOREIGN KEY(idMembre)
 	REFERENCES Membres(idMembre)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS ObjectifsMembres 
 ( idObjectifMembre INT AUTO_INCREMENT
@@ -92,7 +99,8 @@ CREATE TABLE IF NOT EXISTS ObjectifsMembres
 	REFERENCES Objectifs(idObjectif)
 , FOREIGN KEY(idMembre)
 	REFERENCES Membres(idMembre)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS PreferencesMembres 
 ( idPreferenceMembre INT AUTO_INCREMENT
@@ -103,7 +111,8 @@ CREATE TABLE IF NOT EXISTS PreferencesMembres
 	REFERENCES Preferences(idPreference)
 , FOREIGN KEY(idMembre)
 	REFERENCES Membres(idMembre)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS Menus 
 ( idMenu INT AUTO_INCREMENT
@@ -114,13 +123,15 @@ CREATE TABLE IF NOT EXISTS Menus
 , PRIMARY KEY(idMenu)
 , FOREIGN KEY(idMembre)
 	REFERENCES Membres(idMembre)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS TypesPlats
 ( idTypePlat INT AUTO_INCREMENT
 , typePlat VARCHAR(15) UNIQUE
 , PRIMARY KEY(idTypePlat)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS Plats
 ( idPlat INT AUTO_INCREMENT
@@ -135,7 +146,8 @@ CREATE TABLE IF NOT EXISTS Plats
 	REFERENCES Membres(idMembre)
 , FOREIGN KEY(idTypePlat)
 	REFERENCES TypesPlats(idTypePlat)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS MenusPlats
 ( idMenuPlat INT AUTO_INCREMENT
@@ -146,20 +158,23 @@ CREATE TABLE IF NOT EXISTS MenusPlats
 	REFERENCES Menus(idMenu)
 , FOREIGN KEY(idPlat)
 	REFERENCES Plats(idPlat)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS UnitesMesure
 ( idUniteMesure INT AUTO_INCREMENT
 , uniteMesure VARCHAR(15) NOT NULL UNIQUE
 , symbole VARCHAR(3) NOT NULL UNIQUE
 , PRIMARY KEY(idUniteMesure)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS CategoriesAlimentaires
 ( idCategorieAlimentaire INT AUTO_INCREMENT
 , categorieAlimentaire VARCHAR(30) NOT NULL UNIQUE
 , PRIMARY KEY(idCategorieAlimentaire)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS Aliments
 ( idAliment INT AUTO_INCREMENT
@@ -172,7 +187,8 @@ CREATE TABLE IF NOT EXISTS Aliments
 	REFERENCES UnitesMesure(idUniteMesure)
 , FOREIGN KEY(idCategorieAlimentaire)
 	REFERENCES CategoriesAlimentaires(idCategorieAlimentaire)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS PlatsAliments
 ( idPlatAliment INT AUTO_INCREMENT
@@ -184,7 +200,8 @@ CREATE TABLE IF NOT EXISTS PlatsAliments
 	REFERENCES Plats(idPlat)
 , FOREIGN KEY(idAliment)
 	REFERENCES Aliments(idAliment)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS ValeursNutritionnelles
 ( idValeurNutritionnelle INT AUTO_INCREMENT
@@ -193,7 +210,8 @@ CREATE TABLE IF NOT EXISTS ValeursNutritionnelles
 , PRIMARY KEY(idValeurNutritionnelle)
 , FOREIGN KEY(idUniteMesure)
 	REFERENCES UnitesMesure(idUniteMesure)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS AlimentsValeursNutritionnelles
 ( idAlimentValeurNutritionnelle INT AUTO_INCREMENT
@@ -205,32 +223,11 @@ CREATE TABLE IF NOT EXISTS AlimentsValeursNutritionnelles
 	REFERENCES Aliments(idAliment)
 , FOREIGN KEY(idValeurNutritionnelle)
 	REFERENCES ValeursNutritionnelles(idValeurNutritionnelle)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE OR REPLACE VIEW CurrentVersion AS
 SELECT version, datePublication, downloadLink, changeLog
 From VersionsLogiciel
 ORDER BY version DESC
 LIMIT 1;
-
-
-
-
-ALTER DATABASE `420-5a5-a15_nutritia` CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE Aliments CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE AlimentsValeursNutritionnelles CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE CategoriesAlimentaires CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE Membres CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE Menus CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE MenusPlats CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE Objectifs CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE ObjectifsMembres CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE Plats CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE PlatsAliments CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE Preferences CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE Preferencesmembres CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE restrictionsalimentaires CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE restrictionsalimentairesmembres CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE typesplats CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE unitesmesure CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE valeursnutritionnelles CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
