@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS VersionsLogiciel
 , version VARCHAR(7) NOT NULL
 , changelog VARCHAR(500)
 , downloadLink VARCHAR(100) NOT NULL DEFAULT 'https://github.com/Nutritia/nutritia/releases'
-, datePublication DATETIME NOT NULL DEFAULT NOW()
+, datePublication TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 )
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
@@ -117,7 +117,7 @@ CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 CREATE TABLE IF NOT EXISTS Menus 
 ( idMenu INT AUTO_INCREMENT
 , idMembre INT NOT NULL
-, nom VARCHAR(15) NOT NULL UNIQUE
+, nom VARCHAR(15) NOT NULL
 , nbPersonnes INT NOT NULL
 , dateMenu DATETIME NOT NULL
 , PRIMARY KEY(idMenu)
@@ -125,6 +125,10 @@ CREATE TABLE IF NOT EXISTS Menus
 	REFERENCES Membres(idMembre)
 )
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+ALTER TABLE Menus
+ADD CONSTRAINT Menus_idMembre_nom_UK
+UNIQUE (idMembre, nom);
 
 CREATE TABLE IF NOT EXISTS TypesPlats
 ( idTypePlat INT AUTO_INCREMENT
@@ -182,6 +186,7 @@ CREATE TABLE IF NOT EXISTS Aliments
 , idCategorieAlimentaire INT NOT NULL
 , nom VARCHAR(30) NOT NULL UNIQUE
 , mesure INT NOT NULL
+, imageUrl VARCHAR(200)
 , PRIMARY KEY(idAliment)
 , FOREIGN KEY(idUniteMesure)
 	REFERENCES UnitesMesure(idUniteMesure)
