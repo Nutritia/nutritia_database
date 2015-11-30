@@ -5,6 +5,7 @@ CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `420-5A5-A15_Nutritia`;
 
 # Création de la structure des tables de la base de données Nutritia.
+DROP TABLE IF EXISTS DonsMembres;
 DROP TABLE IF EXISTS AlimentsValeursNutritionnelles;
 DROP TABLE IF EXISTS ValeursNutritionnelles;
 DROP TABLE IF EXISTS PlatsAliments;
@@ -24,6 +25,9 @@ DROP TABLE IF EXISTS Preferences;
 DROP TABLE IF EXISTS Objectifs;
 DROP TABLE IF EXISTS RestrictionsAlimentaires;
 DROP TABLE IF EXISTS VersionsLogiciel;
+DROP TABLE IF EXISTS Dons;
+DROP TABLE IF EXISTS ModesPaiement;
+
 
 
 CREATE TABLE IF NOT EXISTS VersionsLogiciel
@@ -247,6 +251,52 @@ CREATE TABLE IF NOT EXISTS AlimentsValeursNutritionnelles
 	REFERENCES ValeursNutritionnelles(idValeurNutritionnelle)
 )
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+
+
+CREATE TABLE IF NOT EXISTS ModesPaiement
+( idModePaiement INT PRIMARY KEY AUTO_INCREMENT
+, nom VARCHAR(20)
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+ALTER TABLE ModesPaiement
+ADD CONSTRAINT ModesPaiement_nom_UK
+UNIQUE (nom);
+
+CREATE TABLE IF NOT EXISTS Dons
+( idDon INT PRIMARY KEY AUTO_INCREMENT
+, idModePaiement INT NOT NULL
+, nom VARCHAR(50) NOT NULL
+, montant INT NOT NULL DEFAULT 0
+, dateDon TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+ALTER TABLE Dons
+ADD CONSTRAINT Dons_ModesPaiement_FK
+FOREIGN KEY (idModePaiement) REFERENCES ModesPaiement (idModePaiement);
+
+
+CREATE TABLE IF NOT EXISTS DonsMembres
+( idDonsMembres INT PRIMARY KEY AUTO_INCREMENT
+, idMembre INT NOT NULL
+, idDon INT NOT NULL
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+ALTER TABLE DonsMembres
+ADD CONSTRAINT DonsMembres_Membres
+FOREIGN KEY (idMembre) REFERENCES Membres (idMembre);
+
+ALTER TABLE DonsMembres
+ADD CONSTRAINT DonsMembres_Dons
+FOREIGN KEY (idDon) REFERENCES Dons (idDon);
+
+ALTER TABLE DonsMembres
+ADD CONSTRAINT Dons_Membre_Don_UK
+UNIQUE (idMembre, idDon);
+
 
 CREATE OR REPLACE VIEW CurrentVersion AS
 SELECT version, datePublication, downloadLink, changeLog

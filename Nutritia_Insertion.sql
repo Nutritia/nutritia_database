@@ -46,6 +46,23 @@ INSERT INTO VersionsLogiciel
 VALUES
 ('0.5.9.0', 'https://github.com/Nutritia/nutritia/releases/tag/v0.5.9.0');
 
+
+# Mode de paiement pour les Dons
+INSERT INTO ModesPaiement
+(nom)
+VALUES
+('Mastercard');
+
+INSERT INTO ModesPaiement
+(nom)
+VALUES
+('Visa');
+
+INSERT INTO ModesPaiement
+(nom)
+VALUES
+('Amex');
+
 # Types de plats prédéfinis.
 INSERT INTO TypesPlats
 ( typePlat )
