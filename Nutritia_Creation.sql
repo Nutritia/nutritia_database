@@ -267,6 +267,7 @@ UNIQUE (nom);
 CREATE TABLE IF NOT EXISTS Dons
 ( idDon INT PRIMARY KEY AUTO_INCREMENT
 , idModePaiement INT NOT NULL
+, noTransaction VARCHAR(255) NOT NULL
 , nom VARCHAR(50) NOT NULL
 , montant FLOAT NOT NULL DEFAULT 0
 , dateDon TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -276,6 +277,10 @@ CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Dons
 ADD CONSTRAINT Dons_ModesPaiement_FK
 FOREIGN KEY (idModePaiement) REFERENCES ModesPaiement (idModePaiement);
+
+ALTER TABLE Dons
+ADD CONSTRAINT Dons_noTransaction_UK
+UNIQUE(noTransaction);
 
 
 CREATE TABLE IF NOT EXISTS DonsMembres
@@ -306,6 +311,6 @@ LIMIT 1;
 
 
 CREATE OR REPLACE VIEW AllDons AS
-SELECT d.nom AS Auteur, montant, dateDon, m.nom AS ModePaiement
+SELECT noTransaction, d.nom AS Auteur, montant, dateDon, m.nom AS ModePaiement
 FROM Dons d
 INNER JOIN ModesPaiement m ON  m.idModePaiement = d.idModePaiement;
