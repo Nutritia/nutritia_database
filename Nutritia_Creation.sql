@@ -268,7 +268,7 @@ CREATE TABLE IF NOT EXISTS Dons
 ( idDon INT PRIMARY KEY AUTO_INCREMENT
 , idModePaiement INT NOT NULL
 , nom VARCHAR(50) NOT NULL
-, montant INT NOT NULL DEFAULT 0
+, montant FLOAT NOT NULL DEFAULT 0
 , dateDon TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 )
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
@@ -303,3 +303,9 @@ SELECT version, datePublication, downloadLink, changeLog
 From VersionsLogiciel
 ORDER BY version DESC
 LIMIT 1;
+
+
+CREATE OR REPLACE VIEW AllDons AS
+SELECT d.nom AS Auteur, montant, dateDon, m.nom AS ModePaiement
+FROM Dons d
+INNER JOIN ModesPaiement m ON  m.idModePaiement = d.idModePaiement;
