@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS Aliments;
 DROP TABLE IF EXISTS CategoriesAlimentaires;
 DROP TABLE IF EXISTS UnitesMesure;
 DROP TABLE IF EXISTS MenusPlats;
+DROP TAble if EXISTS SuiviPlats;
 DROP TABLE IF EXISTS Plats;
 DROP TABLE IF EXISTS TypesPlats;
 DROP TABLE IF EXISTS Menus;
@@ -74,6 +75,7 @@ CREATE TABLE IF NOT EXISTS Membres
 , motPasse VARCHAR(15) NOT NULL
 , estAdmin BOOL NOT NULL DEFAULT FALSE
 , estBanni BOOL NOT NULL DEFAULT FALSE
+, derniereMaj VARCHAR (20) NOT NULL DEFAULT "0000-00-00 00:00:00"
 , PRIMARY KEY(idMembre)
 )
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
@@ -142,14 +144,29 @@ CREATE TABLE IF NOT EXISTS Plats
 , idMembre INT NOT NULL
 , idTypePlat INT NOT NULL
 , nom VARCHAR(50) NOT NULL UNIQUE
+, description VARCHAR(255) NOT NULL DEFAULT 'Aucune description'
 , imageUrl VARCHAR(100)
 , note DOUBLE
 , nbVotes INT NOT NULL DEFAULT 0
+, dateAjout VARCHAR (20) NOT NULL DEFAULT "0000-00-00 00:00:00"
 , PRIMARY KEY(idPlat)
 , FOREIGN KEY(idMembre)
 	REFERENCES Membres(idMembre)
 , FOREIGN KEY(idTypePlat)
 	REFERENCES TypesPlats(idTypePlat)
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS SuiviPlats
+( idSuiviPlat INT AUTO_INCREMENT
+, idMembre INT NOT NULL
+, idPlat INT NOT NULL
+, estTricherie BOOLEAN NOT NULL
+, PRIMARY KEY(idSuiviPlat)
+, FOREIGN KEY(idMembre)
+	REFERENCES Membres(idMembre)
+, FOREIGN KEY(idPlat)
+	REFERENCES Plats(idPlat)
 )
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
