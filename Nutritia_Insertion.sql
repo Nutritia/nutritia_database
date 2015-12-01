@@ -36,9 +36,9 @@ VALUES
 
 # Membres prédéfinis.
 INSERT INTO Membres
-( nom, prenom, taille, masse, dateNaissance, nomUtilisateur, motPasse, estAdmin, estBanni, derniereMaj)
+( nom, prenom, taille, masse, dateNaissance, nomUtilisateur, motPasse, estAdmin, estBanni)
 VALUES
-( 'Administrateur', 'Administrateur', 180, 80, DATE('1996-08-09'), 'admin', 'admin', true, false, "0001-01-01 00:00:00" );
+( 'Administrateur', 'Administrateur', 180, 80, DATE('1996-08-09'), 'admin', 'admin', true, false );
 
 # Version 0.5.9.0 commence les notifications
 INSERT INTO VersionsLogiciel
@@ -75,31 +75,31 @@ VALUES
 
 # Quelques plats de bases.
 INSERT INTO Plats
-( idMembre, idTypePlat, nom, description, imageUrl, dateAjout)
+( idMembre, idTypePlat, nom, description, imageUrl)
 VALUES
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Spaghetti sauce à la viande', 'Savoureux spaghetti garni d''une délicieuse sauce à la viande.', 'pack://application:,,,/UI/Images/spaghetti.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Smoothie fraises et bananes', 'Délicieux smoothie santé garni de fraises de bananes.', 'pack://application:,,,/UI/Images/smoothieFraisesBananes.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déjeuner'), 'Omelette western', 'Délicieuse omelette aux légumes.', 'pack://application:,,,/UI/Images/omelette.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déjeuner'), 'Omelette aux fruits', 'Omelette santé garnie de différents fruits.', 'pack://application:,,,/UI/Images/nonDisponible.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Hamburger au boeuf et au cheddar', 'Hamburger au boeuf savoureux garni de fromage cheddar.', 'pack://application:,,,/UI/Images/hamburger.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déssert'), 'Tarte au sucre', 'Une tarte qui va faire plaisir aux amateurs de sucré.', 'pack://application:,,,/UI/Images/tarteSucre.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Pâté chinois végétarien', 'Délicieux pâté chinois parfait pour les végétariens.', 'pack://application:,,,/UI/Images/pateChinoisVege.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Pizza pochettes toutes garnies', 'Pizza pochettes aux légumes.', 'pack://application:,,,/UI/Images/pizzaPochettes.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Couscous végétarien', 'Aucune description.', 'pack://application:,,,/UI/Images/couscousVege.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Entrée'), 'Potage à la citrouille', 'Aucune description.', 'pack://application:,,,/UI/Images/nonDisponible.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Entrée'), 'Escargots à l’ail gratinés', 'Aucune description.', 'pack://application:,,,/UI/Images/escargotsAil.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déssert'), 'Gâteau aux carottes', 'Aucune description.', 'pack://application:,,,/UI/Images/gateauCarottes.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Wrap au poulet', 'Aucune description.', 'pack://application:,,,/UI/Images/wrapPoulet.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Salade grecque', 'Aucune description.', 'pack://application:,,,/UI/Images/saladeGrecque.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Pâtes aux crevettes', 'Aucune description.', 'pack://application:,,,/UI/Images/patesCrevettes.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Macaroni chinois', 'Aucune description.', 'pack://application:,,,/UI/Images/macaroniChinois.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Jus d''orange', 'Aucune description.', 'pack://application:,,,/UI/Images/jusOrange.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Jus de pomme', 'Aucune description.', 'pack://application:,,,/UI/Images/jusPomme.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Thé glacé au citron', 'Aucune description.', 'pack://application:,,,/UI/Images/theGlace.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Eau', 'Aucune description.', 'pack://application:,,,/UI/Images/eau.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déssert'), 'Salade de fruits', 'Aucune description.', 'pack://application:,,,/UI/Images/saladeFruits.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Filets de poissons au four', 'Aucune description.', 'pack://application:,,,/UI/Images/filetsPoissons.png', "2015-11-19 00:00:00"),
-( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Filet mignon sauce aux champignons', 'Aucune description.', 'pack://application:,,,/UI/Images/filetMignonChampignons.png', "2015-11-19 00:00:00");
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Spaghetti sauce à la viande', 'Savoureux spaghetti garni d''une délicieuse sauce à la viande.', 'pack://application:,,,/UI/Images/spaghetti.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Smoothie fraises et bananes', 'Délicieux smoothie santé garni de fraises de bananes.', 'pack://application:,,,/UI/Images/smoothieFraisesBananes.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déjeuner'), 'Omelette western', 'Délicieuse omelette aux légumes.', 'pack://application:,,,/UI/Images/omelette.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déjeuner'), 'Omelette aux fruits', 'Omelette santé garnie de différents fruits.', 'pack://application:,,,/UI/Images/nonDisponible.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Hamburger au boeuf et au cheddar', 'Hamburger au boeuf savoureux garni de fromage cheddar.', 'pack://application:,,,/UI/Images/hamburger.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déssert'), 'Tarte au sucre', 'Une tarte qui va faire plaisir aux amateurs de sucré.', 'pack://application:,,,/UI/Images/tarteSucre.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Pâté chinois végétarien', 'Délicieux pâté chinois parfait pour les végétariens.', 'pack://application:,,,/UI/Images/pateChinoisVege.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Pizza pochettes toutes garnies', 'Pizza pochettes aux légumes.', 'pack://application:,,,/UI/Images/pizzaPochettes.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Couscous végétarien', 'Aucune description.', 'pack://application:,,,/UI/Images/couscousVege.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Entrée'), 'Potage à la citrouille', 'Aucune description.', 'pack://application:,,,/UI/Images/nonDisponible.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Entrée'), 'Escargots à l’ail gratinés', 'Aucune description.', 'pack://application:,,,/UI/Images/escargotsAil.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déssert'), 'Gâteau aux carottes', 'Aucune description.', 'pack://application:,,,/UI/Images/gateauCarottes.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Wrap au poulet', 'Aucune description.', 'pack://application:,,,/UI/Images/wrapPoulet.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Salade grecque', 'Aucune description.', 'pack://application:,,,/UI/Images/saladeGrecque.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Pâtes aux crevettes', 'Aucune description.', 'pack://application:,,,/UI/Images/patesCrevettes.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Macaroni chinois', 'Aucune description.', 'pack://application:,,,/UI/Images/macaroniChinois.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Jus d''orange', 'Aucune description.', 'pack://application:,,,/UI/Images/jusOrange.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Jus de pomme', 'Aucune description.', 'pack://application:,,,/UI/Images/jusPomme.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Thé glacé au citron', 'Aucune description.', 'pack://application:,,,/UI/Images/theGlace.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Breuvage'), 'Eau', 'Aucune description.', 'pack://application:,,,/UI/Images/eau.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Déssert'), 'Salade de fruits', 'Aucune description.', 'pack://application:,,,/UI/Images/saladeFruits.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Filets de poissons au four', 'Aucune description.', 'pack://application:,,,/UI/Images/filetsPoissons.png'),
+( 1, ( SELECT idTypePlat FROM TypesPlats WHERE typePlat = 'Plat principal'), 'Filet mignon sauce aux champignons', 'Aucune description.', 'pack://application:,,,/UI/Images/filetMignonChampignons.png');
 
 # Unités de mesure prédéfinies.
 INSERT INTO UnitesMesure
