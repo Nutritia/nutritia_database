@@ -38,7 +38,7 @@ VALUES
 INSERT INTO Membres
 ( nom, prenom, taille, masse, dateNaissance, nomUtilisateur, motPasse, estAdmin, estBanni, derniereMaj)
 VALUES
-( 'Administrateur', 'Administrateur', 180, 80, DATE('1996-08-09'), 'admin', 'admin', true, false, "0000-00-00 00:00:00" );
+( 'Administrateur', 'Administrateur', 180, 80, DATE('1996-08-09'), 'admin', 'admin', true, false, "0001-01-01 00:00:00" );
 
 # Version 0.5.9.0 commence les notifications
 INSERT INTO VersionsLogiciel
