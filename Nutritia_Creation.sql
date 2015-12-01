@@ -317,7 +317,7 @@ INNER JOIN ModesPaiement m ON  m.idModePaiement = d.idModePaiement;
 
 
 CREATE OR REPLACE VIEW LastModifiedMember AS
-SELECT *
+SELECT derniereMaj
 FROM Membres
 ORDER BY derniereMaj DESC
 LIMIT 1;
