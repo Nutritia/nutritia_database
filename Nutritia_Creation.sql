@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS Membres
 , motPasse VARCHAR(15) NOT NULL
 , estAdmin BOOL NOT NULL DEFAULT FALSE
 , estBanni BOOL NOT NULL DEFAULT FALSE
-, derniereMaj TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+, derniereMaj TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 , PRIMARY KEY(idMembre)
 )
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
@@ -314,3 +314,13 @@ CREATE OR REPLACE VIEW AllDons AS
 SELECT noTransaction, d.nom AS Auteur, montant, dateDon, m.nom AS ModePaiement
 FROM Dons d
 INNER JOIN ModesPaiement m ON  m.idModePaiement = d.idModePaiement;
+
+
+CREATE OR REPLACE VIEW LastModifiedMember AS
+SELECT *
+FROM Membres
+ORDER BY derniereMaj DESC
+LIMIT 1;
+
+
+
