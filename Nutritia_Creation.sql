@@ -322,5 +322,10 @@ FROM Membres
 ORDER BY derniereMaj DESC
 LIMIT 1;
 
+CREATE OR REPLACE VIEW LastTimeDon AS
+SELECT dateDon
+FROM Dons
+ORDER BY dateDon DESC
+LIMIT 1;
 
 
