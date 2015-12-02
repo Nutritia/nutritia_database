@@ -27,7 +27,22 @@ DROP TABLE IF EXISTS RestrictionsAlimentaires;
 DROP TABLE IF EXISTS VersionsLogiciel;
 DROP TABLE IF EXISTS Dons;
 DROP TABLE IF EXISTS ModesPaiement;
+DROP TABLE IF EXISTS Langues;
 
+CREATE TABLE IF NOT EXISTS Langues
+( idLangue INT PRIMARY KEY AUTO_INCREMENT
+, nom VARCHAR(50) NOT NULL
+, IETF VARCHAR(6) NOT NULL
+)
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+ALTER TABLE Langues
+ADD CONSTRAINT Langues_nom_UK
+UNIQUE (nom);
+
+ALTER TABLE Langues
+ADD CONSTRAINT Langues_IETF_UK
+UNIQUE (IETF);
 
 
 CREATE TABLE IF NOT EXISTS VersionsLogiciel
@@ -70,6 +85,7 @@ CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS Membres 
 ( idMembre INT AUTO_INCREMENT
+, idLangue INT NOT NULL
 , nom VARCHAR(30) NOT NULL
 , prenom VARCHAR(30) NOT NULL
 , taille DOUBLE NOT NULL
@@ -83,6 +99,10 @@ CREATE TABLE IF NOT EXISTS Membres
 , PRIMARY KEY(idMembre)
 )
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+ALTER TABLE Membres
+ADD CONSTRAINT Membres_Langues_FK
+FOREIGN KEY (idLangue) REFERENCES Langues (idLangue);
 
 CREATE TABLE IF NOT EXISTS RestrictionsAlimentairesMembres 
 ( idRestrictionAlimentaireMembre INT AUTO_INCREMENT

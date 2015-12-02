@@ -34,11 +34,22 @@ VALUES
 ( 'Pâtes' ),
 ( 'Poissons et fruits de mers' );
 
+
+INSERT INTO Langues
+(nom, IETF)
+VALUES
+('Français Canada', 'fr-CA');
+
+INSERT INTO Langues
+(nom, IETF)
+VALUES
+('Anglais États-Unis', 'en-US');
+
 # Membres prédéfinis.
 INSERT INTO Membres
-( nom, prenom, taille, masse, dateNaissance, nomUtilisateur, motPasse, estAdmin, estBanni)
+( nom, prenom, taille, masse, dateNaissance, nomUtilisateur, motPasse, estAdmin, estBanni, idLangue)
 VALUES
-( 'Administrateur', 'Administrateur', 180, 80, DATE('1996-08-09'), 'admin', 'admin', true, false );
+( 'Administrateur', 'Administrateur', 180, 80, DATE('1996-08-09'), 'admin', 'admin', true, false, (SELECT idLangue FROM Langues WHERE IETF = 'fr-CA') );
 
 # Version 0.5.9.0 commence les notifications
 INSERT INTO VersionsLogiciel
@@ -72,6 +83,7 @@ VALUES
 ( 'Plat principal' ),
 ( 'Breuvage' ),
 ( 'Déssert' );
+
 
 # Quelques plats de bases.
 INSERT INTO Plats
