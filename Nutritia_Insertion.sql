@@ -51,11 +51,11 @@ INSERT INTO Membres
 VALUES
 ( 'Administrateur', 'Administrateur', 180, 80, DATE('1996-08-09'), 'admin', 'admin', true, false, (SELECT idLangue FROM Langues WHERE IETF = 'fr-CA') );
 
-# Version 0.5.9.0 commence les notifications
+# Pour faire apparaitre les notifs à la correction
 INSERT INTO VersionsLogiciel
 (version, downloadLink)
 VALUES
-('0.5.9.0', 'https://github.com/Nutritia/nutritia/releases/tag/v0.5.9.0');
+('2.0.0.0', 'https://github.com/Nutritia/nutritia/releases');
 
 
 # Mode de paiement pour les Dons
