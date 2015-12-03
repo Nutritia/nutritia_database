@@ -62,7 +62,7 @@ VALUES
 INSERT INTO ModesPaiement
 (nom)
 VALUES
-('Mastercard');
+('MasterCard');
 
 INSERT INTO ModesPaiement
 (nom)
