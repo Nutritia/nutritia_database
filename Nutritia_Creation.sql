@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS Plats
 , imageUrl VARCHAR(100)
 , note DOUBLE
 , nbVotes INT NOT NULL DEFAULT 0
-, dateAjout TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+, derniereMaj TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 , PRIMARY KEY(idPlat)
 , FOREIGN KEY(idMembre)
 	REFERENCES Membres(idMembre)
@@ -337,15 +337,13 @@ INNER JOIN ModesPaiement m ON  m.idModePaiement = d.idModePaiement;
 
 
 CREATE OR REPLACE VIEW LastModifiedMember AS
-SELECT derniereMaj
-FROM Membres
-ORDER BY derniereMaj DESC
-LIMIT 1;
+SELECT MAX(derniereMaj) AS derniereMaj
+FROM Membres;
 
 CREATE OR REPLACE VIEW LastTimeDon AS
-SELECT dateDon
-FROM Dons
-ORDER BY dateDon DESC
-LIMIT 1;
+SELECT MAX(dateDon) AS derniereMaj
+FROM Dons;
 
-
+CREATE OR REPLACE VIEW LastModifiedPlat AS
+SELECT MAX(derniereMaj) AS derniereMaj
+FROM Plats;
