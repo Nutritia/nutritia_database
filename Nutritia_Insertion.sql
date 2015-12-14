@@ -834,3 +834,5 @@ VALUES
 ( ( SELECT idPlat FROM Plats WHERE nom='Filet mignon sauce aux champignons' ), ( SELECT idAliment FROM Aliments WHERE nom='Vinaigre balsamique' ), 1 ),
 ( ( SELECT idPlat FROM Plats WHERE nom='Filet mignon sauce aux champignons' ), ( SELECT idAliment FROM Aliments WHERE nom='Bouillon de boeuf' ), 0.25 ),
 ( ( SELECT idPlat FROM Plats WHERE nom='Filet mignon sauce aux champignons' ), ( SELECT idAliment FROM Aliments WHERE nom='Moutarde de dijon' ), 2.5 );
+
+COMMIT;
