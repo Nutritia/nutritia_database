@@ -55,7 +55,7 @@ VALUES
 INSERT INTO VersionsLogiciel
 (version, downloadLink)
 VALUES
-('2.0.0.0', 'https://github.com/Nutritia/nutritia/releases');
+('2.0.1.0', 'https://github.com/Nutritia/nutritia/releases/download/v2.0.1.0/Nutritia.zip');
 
 
 # Mode de paiement pour les Dons
